@@ -36,6 +36,7 @@ BEGIN
 		PRINT '-------------------------------------------------------------------------------------------------------------';
 
 		SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: silver.crm_cust_info';
 		TRUNCATE TABLE silver.crm_cust_info;
 		PRINT '>> Inserting Data Into: silver.crm_cust_info';
 		INSERT INTO silver.crm_cust_info (
@@ -82,6 +83,7 @@ BEGIN
 		PRINT '---------------------'
 
 		SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: silver.crm_prd_info';
 		TRUNCATE TABLE silver.crm_prd_info;
 		PRINT '>> Inserting Data Into: silver.crm_prd_info';
 		INSERT INTO silver.crm_prd_info (
@@ -118,6 +120,7 @@ BEGIN
 		PRINT '---------------------'
 
 		SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: silver.crm_sales_details';
 		TRUNCATE TABLE silver.crm_sales_details;
 		PRINT '>> Inserting Data Into: silver.crm_sales_details';
 		INSERT INTO silver.crm_sales_details (
@@ -165,7 +168,13 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST( DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '---------------------'
 
+
+		PRINT '-------------------------------------------------------------------------------------------------------------';
+		PRINT 'Loading ERP Tables';
+		PRINT '-------------------------------------------------------------------------------------------------------------';
+
 		SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: silver.erp_cust_az12';
 		TRUNCATE TABLE silver.erp_cust_az12;
 		PRINT '>> Inserting Data Into: silver.erp_cust_az12';
 		INSERT INTO silver.erp_cust_az12 (
@@ -196,6 +205,7 @@ BEGIN
 		PRINT '---------------------'
 
 		SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: silver.erp_loc_a101';
 		TRUNCATE TABLE silver.erp_loc_a101;
 		PRINT '>> Inserting Data Into: silver.erp_loc_a101';
 		INSERT INTO silver.erp_loc_a101 (
@@ -220,6 +230,7 @@ BEGIN
 		PRINT '---------------------'
 
 		SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: silver.erp_px_cat_g1v2';
 		TRUNCATE TABLE silver.erp_px_cat_g1v2;
 		PRINT '>> Inserting Data Into: silver.erp_px_cat_g1v2';
 		INSERT INTO silver.erp_px_cat_g1v2 (
@@ -244,7 +255,7 @@ BEGIN
 		SET @batch_end_time = GETDATE();
 
 		PRINT '===================================='
-		PRINT 'Loading of Bronze layer completed'
+		PRINT 'Loading of Silver layer completed'
 		PRINT '	- Total Load Duration: ' + CAST( DATEDIFF(second, @batch_start_time, @batch_end_time) AS NVARCHAR) + ' seconds';
 		PRINT '===================================='
 
